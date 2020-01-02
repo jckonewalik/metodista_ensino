@@ -1,8 +1,9 @@
 import React from 'react';
+import SignInPage from './pages/sign-in/sign-in.components';
 
 function App() {
   return (
-    <div className="App" />
+    <SignInPage />
   );
 }
 
