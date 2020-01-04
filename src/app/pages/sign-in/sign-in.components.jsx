@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { setCurrentUser } from '../../../redux/user/user.actions';
 import FormInput from '../../components/form-input/form-input.component';
 import api from '../../../services/api';
 import {
@@ -14,9 +15,11 @@ import {
 import metodista from '../../../assets/metodista.png';
 
 const SignInPage = () => {
-  const [currentError, setCurrentError] = useState({
-    hasError: false,
-    errorMessage: '',
+  const dispatch = useDispatch();
+  const [currentAlert, setCurrentAlert] = useState({
+    open: false,
+    title: '',
+    message: '',
   });
   const [userCredentials, setUserCredentials] = useState(
     {
@@ -24,16 +27,26 @@ const SignInPage = () => {
       password: '',
     },
   );
+  const handleForgotPassword = async () => {
+    try {
+      await api.put('/users/reset-password', { email: userCredentials.email });
+      setCurrentAlert({ open: true, title: 'Reset e senha', message: `Um E-mail foi enviado para o endereço ${userCredentials.email}` });
+    } catch (error) {
+      const { message } = await error.response.data;
+      setCurrentAlert({ open: true, title: 'Erro ao efetuar reset e senha', message });
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await api.post('/sessions',
         { email: userCredentials.email, password: userCredentials.password });
       const { user } = await response.data;
-      setCurrentError({ hasError: false, errorMessage: '' });
+      setCurrentAlert({ open: false, title: '', message: '' });
+      dispatch(setCurrentUser(user));
     } catch (error) {
       const { message } = error.response.data;
-      setCurrentError({ hasError: true, errorMessage: message });
+      setCurrentAlert({ open: true, title: 'Erro ao efetuar Login', message });
     }
   };
   const handleChange = ({ target: { name, value } }) => {
@@ -61,20 +74,20 @@ const SignInPage = () => {
         />
         <CustomButtonStyled type="submit">Login</CustomButtonStyled>
       </form>
-      <OptionStyled href="/#">Esqueceu a senha?</OptionStyled>
+      <OptionStyled onClick={handleForgotPassword} href="/#">Esqueceu a senha?</OptionStyled>
       <Dialog
-        open={currentError.hasError}
+        open={currentAlert.open}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Erro ao efetuar login</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{currentAlert.title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {currentError.errorMessage}
+            {currentAlert.message}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <CustomButtonStyled onClick={() => setCurrentError({ hasError: false, errorMessage: '' })}>Ok</CustomButtonStyled>
+          <CustomButtonStyled onClick={() => setCurrentAlert({ open: false, title: '', message: '' })}>Ok</CustomButtonStyled>
         </DialogActions>
       </Dialog>
     </MainContainerStyled>
