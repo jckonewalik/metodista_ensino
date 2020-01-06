@@ -9,7 +9,7 @@ export const MainContainerStyled = styled.div`
   align-content: center;
   padding: 0 30px;
 
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 800px) {
     width: 400px;
     border: 1px solid #929292;
     border-radius: 5px;

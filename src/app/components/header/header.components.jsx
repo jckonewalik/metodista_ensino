@@ -1,17 +1,38 @@
 import React from 'react';
-import { Menu, Person } from '@material-ui/icons';
+import { useSelector, useDispatch } from 'react-redux';
 import { IconButton } from '@material-ui/core';
-import { MainContainer } from './header.styles';
+import { toggleMenu } from '../../../redux/menu/menu.actions';
+import { toggledMenuSelector } from '../../../redux/menu/menu.selectors';
+import { MainContainer, IconWhite } from './header.styles';
 
-const Header = () => (
-  <MainContainer>
-    <IconButton>
-      <Menu style={{ color: '#fff' }} />
-    </IconButton>
-    <IconButton>
-      <Person style={{ color: '#fff' }} />
-    </IconButton>
-  </MainContainer>
-);
+const Header = () => {
+  const dispatch = useDispatch();
+  const menuToggled = useSelector(toggledMenuSelector);
+
+  const handleMenuClick = () => {
+    dispatch(toggleMenu());
+  };
+
+  return (
+    <MainContainer>
+      {
+        !menuToggled
+          ? (
+            <IconButton onClick={handleMenuClick}>
+              <IconWhite>menu</IconWhite>
+            </IconButton>
+          )
+          : (
+            <IconButton onClick={handleMenuClick}>
+              <IconWhite>close</IconWhite>
+            </IconButton>
+          )
+      }
+      <IconButton>
+        <IconWhite>person</IconWhite>
+      </IconButton>
+    </MainContainer>
+  );
+};
 
 export default Header;
