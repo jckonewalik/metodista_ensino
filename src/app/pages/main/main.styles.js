@@ -30,8 +30,11 @@ export const MainContent = styled.div`
 `;
 
 export const ContentStyled = styled.div`
-  left: 0;
-  position: relative;
+  flex: 1;
+  background: #EAEAEA;
+  padding: 0 10px;
+  height: 100vh;
+
 `;
 
 export const MenuContainerStyled = styled.div`

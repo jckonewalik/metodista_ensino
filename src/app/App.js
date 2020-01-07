@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { currentUserSelector } from '../redux/user/user.selectors';
-import SignInPage from './pages/sign-in/sign-in.components';
+import SignInPage from './pages/sign-in/sign-in.component';
 import MainPage from './pages/main/main.components';
 import { checkUserSessionStart } from '../redux/user/user.actions';
 
