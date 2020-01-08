@@ -22,5 +22,5 @@ export const selectIsFechingCurrentClass = createSelector(
 );
 export const selectMyClasses = createSelector(
   [selectStudentClass],
-  (studentsClass) => studentsClass.myClasses,
+  (studentsClass) => studentsClass.myClasses || [],
 );
