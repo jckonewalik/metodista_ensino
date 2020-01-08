@@ -9,5 +9,5 @@ export const currentUserSelector = createSelector(
 
 export const currentUserTokenSelector = createSelector(
   [currentUserSelector],
-  (currentUser) => currentUser.token,
+  (currentUser) => currentUser && currentUser.token,
 );
