@@ -16,3 +16,7 @@ export const checkUserSessionFailure = () => ({
 export const checkUserSessionSuccess = () => ({
   type: UserTypes.CHECK_USER_SESSION_SUCCESS,
 });
+
+export const logoutUser = () => ({
+  type: UserTypes.LOGOUT_USER,
+});

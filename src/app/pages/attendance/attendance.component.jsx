@@ -1,5 +1,5 @@
 import 'date-fns';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AttendanceOverview from '../../components/attendance-overview/attendance-overview.component';
@@ -8,18 +8,27 @@ import { setAttendanceDate } from '../../../redux/attendance/attendance.actions'
 import { selectAttendanceDate, selectAttendancesComplete } from '../../../redux/attendance/attendance.selectors';
 import { selectCurrentClass, selectIsFechingCurrentClass } from '../../../redux/students-class/students-class.selectors';
 import {
+  MainContainer,
   ButtonContainerStyled,
   CustomButtonStyled,
   AttendanceListContainerStyled,
 } from './attendance.styles';
+import { setHeaderTitle } from '../../../redux/header/header.actions';
 import DatePickerBarComponent from '../../components/date-picker-bar/date-picker-bar.component';
 
-const AttendancePage = () => {
+const AttendancePage = ({ match, history }) => {
   const dispatch = useDispatch();
   const currentClass = useSelector(selectCurrentClass);
   const isFetchingCurrentClass = useSelector(selectIsFechingCurrentClass);
   const attendanceDate = useSelector(selectAttendanceDate);
   const attendancesComplete = useSelector(selectAttendancesComplete);
+
+  useEffect(() => {
+    dispatch(setHeaderTitle({
+      title: currentClass && currentClass.name,
+      subtitle: currentClass && currentClass.description,
+    }), [dispatch]);
+  });
 
   const selectDate = (newdate) => {
     dispatch(setAttendanceDate(newdate));
@@ -27,7 +36,7 @@ const AttendancePage = () => {
   return (
     !currentClass && !isFetchingCurrentClass ? <Redirect to="/attendance/my-classes" />
       : (
-        <div>
+        <MainContainer>
           <AttendanceOverview />
           <AttendanceListContainerStyled>
             <DatePickerBarComponent handleChange={selectDate} date={attendanceDate} />
@@ -36,12 +45,14 @@ const AttendancePage = () => {
           <ButtonContainerStyled>
             <CustomButtonStyled
               disabled={!attendancesComplete}
-              onClick={() => {}}
+              onClick={() => {
+                history.push(`${match.path}/complement`);
+              }}
             >
-          SALVAR
+            SALVAR
             </CustomButtonStyled>
           </ButtonContainerStyled>
-        </div>
+        </MainContainer>
       )
   );
 };

@@ -18,10 +18,8 @@ export const MainContainerStyled = styled.div`
 `;
 
 export const CustomButtonStyled = styled(CustomButton)`
-  width: 100%;
   height: 50px;
   font-size: 16px;
-  border-radius: 30px;
 `;
 
 export const ImageContainerStyled = styled.div`

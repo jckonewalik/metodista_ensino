@@ -8,8 +8,6 @@ const INITIAL_STATE = {
     teacher: null,
     lesson: null,
   },
-  message: '',
-  hasError: false,
   lessons: [],
 };
 
@@ -56,32 +54,15 @@ const attendanceReducer = (state = INITIAL_STATE, action) => {
           lesson: action.payload,
         },
       };
-    case AttendanceTypes.SAVE_ATTENDANCE_START:
-      return {
-        ...state,
-        message: '',
-      };
     case AttendanceTypes.SAVE_ATTENDANCE_SUCCESS:
       return {
-        ...INITIAL_STATE,        
-        message: 'Chamada realizada com sucesso',
-      };
-    case AttendanceTypes.SAVE_ATTENDANCE_FAILURE:
-      return {
-        ...state,
-        hasError: true,
-        message: action.payload,
+        ...INITIAL_STATE,
       };
     case AttendanceTypes.FETCH_LESSONS_LIST_SUCCESS:
       return {
         ...state,
         lessons: action.payload,
       };
-    case AttendanceTypes.CLEAR_ATTENDANCE_MESSAGE:
-      return {
-        ...state,
-        message: ''
-      }
     default:
       return state;
   }

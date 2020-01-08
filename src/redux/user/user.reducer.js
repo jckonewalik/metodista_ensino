@@ -6,6 +6,11 @@ const INITIAL_DATA = {
 
 const userReducer = (state = INITIAL_DATA, action) => {
   switch (action.type) {
+    case UserTypes.LOGOUT_USER:
+      return {
+        ...state,
+        currentUser: undefined,
+      };
     case UserTypes.SET_CURRENT_USER:
       return {
         ...state,

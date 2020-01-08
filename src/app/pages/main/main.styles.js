@@ -33,15 +33,14 @@ export const ContentStyled = styled.div`
   flex: 1;
   background: #EAEAEA;
   padding: 0 10px;
-  height: 100vh;
-
+  height: calc(100vh - 50px);
 `;
 
 export const MenuContainerStyled = styled.div`
   background: #fff;
   position: absolute;
   left: 0;
-  height: 100%;
+  height: calc(100vh - 50px);
   width: 0;
   overflow: hidden;
   -webkit-transition:width .1s linear;

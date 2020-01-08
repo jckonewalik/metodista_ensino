@@ -9,6 +9,7 @@ import Menu from '../../components/menu/menu.component';
 import { toggledMenuSelector } from '../../../redux/menu/menu.selectors';
 import MyClassesPage from '../my-classes/my-classes.component';
 import AttendancePage from '../attendance/attendance.component';
+import AttendanceComplementPage from '../attendance-complement/attendance-complement.component';
 
 const MainPage = () => {
   const toggled = useSelector(toggledMenuSelector);
@@ -23,6 +24,7 @@ const MainPage = () => {
           <ContentStyled>
             <Route exact path="/attendance/my-classes" component={MyClassesPage} />
             <Route exact path="/attendance/my-classes/attendance-list" component={AttendancePage} />
+            <Route exact path="/attendance/my-classes/attendance-list/complement" component={AttendanceComplementPage} />
           </ContentStyled>
         </MainContent>
       </RootContainer>

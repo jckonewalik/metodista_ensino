@@ -4,7 +4,7 @@ export const ContainerStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding-left: 20px;
   min-height: 60px;
   border-bottom-color: #EAEAEA;
   border-bottom-width: 1;
@@ -13,7 +13,7 @@ export const ContainerStyled = styled.div`
 export const NamedStyled = styled.span`
   color: #706F6F;
   font-weight: 700;
-  font-size: 14;
+  font-size: 14px;
 `;
 
 

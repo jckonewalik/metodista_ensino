@@ -3,12 +3,14 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './user/user.reducer';
 import menuReducer from './menu/menu.reducer';
+import headerReducer from './header/header.reducer';
 import attendanceReducer from './attendance/attendance.reducer';
 import studentsClassReducer from './students-class/students-class.reducer';
 
 const rootReducer = combineReducers(
   {
     user: userReducer,
+    header: headerReducer,
     menu: menuReducer,
     attendance: attendanceReducer,
     studentsClass: studentsClassReducer,

@@ -13,8 +13,10 @@ export const ButtonStyled = styled.button`
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  border-radius: 30;
+  width: 100%;
+  border-radius: 30px;
   border: none;
+  min-height: 30px;
 `;
 
 export const LabelStyled = styled.span`

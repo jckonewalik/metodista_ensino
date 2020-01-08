@@ -25,18 +25,8 @@ export const setAttendanceLesson = (lesson) => ({
   payload: lesson,
 });
 
-export const saveAttendanceStart = (attendance) => ({
-  type: AttendanceTypes.SAVE_ATTENDANCE_START,
-  payload: attendance,
-});
-
 export const saveAttendanceSuccess = () => ({
   type: AttendanceTypes.SAVE_ATTENDANCE_SUCCESS,
-});
-
-export const saveAttendanceFailure = (error) => ({
-  type: AttendanceTypes.SAVE_ATTENDANCE_FAILURE,
-  payload: error.message,
 });
 
 export const fetchLessonsListStart = () => ({
@@ -51,7 +41,3 @@ export const fetchLessonsListSuccess = (lessons) => ({
 export const fetchLessonsListFailure = () => ({
   type: AttendanceTypes.FETCH_LESSONS_LIST_FAILURE,
 });
-
-export const clearAttendanceMessage = () => ({
-  type: AttendanceTypes.CLEAR_ATTENDANCE_MESSAGE,
-})

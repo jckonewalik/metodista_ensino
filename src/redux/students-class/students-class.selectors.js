@@ -9,7 +9,7 @@ export const selectCurrentClass = createSelector(
 
 export const selectTeachersCurrentClass = createSelector(
   [selectCurrentClass],
-  (currentClass) => currentClass.teachers,
+  (currentClass) => (currentClass && currentClass.teachers) || [],
 );
 
 export const selectIsFechingClasses = createSelector(

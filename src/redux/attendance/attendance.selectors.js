@@ -7,16 +7,6 @@ export const selectCurrentAttendance = createSelector(
   (attendance) => attendance.currentAttendance,
 );
 
-export const selectAttendanceMessage = createSelector(
-  [selectAttendance],
-  (attendance) => attendance.message,
-);
-
-export const selectAttendanceError = createSelector(
-  [selectAttendance],
-  (attendance) => attendance.hasError,
-);
-
 export const selectAttendanceLessons = createSelector(
   [selectAttendance],
   (attendance) => attendance.lessons,
