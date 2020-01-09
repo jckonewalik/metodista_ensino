@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { setCurrentUser } from '../../../redux/user/user.actions';
 import FormInput from '../../components/form-input/form-input.component';
 import api from '../../../services/api';
+import { handleErrorMessage } from '../../utils/utils';
 import {
   MainContainerStyled,
   ImageContainerStyled, ImageStyled, CustomButtonStyled, OptionStyled,
@@ -32,11 +33,11 @@ const SignInPage = () => {
       await api.put('/users/reset-password', { email: userCredentials.email });
       setCurrentAlert({ open: true, title: 'Reset e senha', message: `Um E-mail foi enviado para o endereço ${userCredentials.email}` });
     } catch (error) {
-      const { data: { message } } = await error.response;
+      const message = await handleErrorMessage(error);
       setCurrentAlert({
         open: true,
         title: 'Erro ao efetuar reset e senha',
-        message: message || 'Request Error',
+        message,
       });
     }
   };
@@ -49,11 +50,12 @@ const SignInPage = () => {
       setCurrentAlert({ open: false, title: '', message: '' });
       dispatch(setCurrentUser(user));
     } catch (error) {
-      const { data: { message } } = error.response;
+      const message = await handleErrorMessage(error);
+
       setCurrentAlert({
         open: true,
         title: 'Erro ao efetuar Login',
-        message: message || 'Request Error',
+        message,
       });
     }
   };
@@ -95,7 +97,7 @@ const SignInPage = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <CustomButtonStyled onClick={() => setCurrentAlert({ open: false, title: '', message: '' })}>Ok</CustomButtonStyled>
+          <CustomButtonStyled onClick={() => setCurrentAlert({ ...currentAlert, open: false })}>Ok</CustomButtonStyled>
         </DialogActions>
       </Dialog>
     </MainContainerStyled>

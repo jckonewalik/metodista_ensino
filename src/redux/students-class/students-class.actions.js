@@ -12,7 +12,7 @@ export const setCurrentClassSuccess = (studentsClass) => ({
 
 export const setSetCurrentClassFailure = (error) => ({
   type: StudentsClassActionsType.SET_CURRENT_CLASS_FAILURE,
-  payload: error.message || '',
+  payload: error,
 });
 
 export const fetchClassesStart = () => ({
@@ -31,5 +31,5 @@ export const fetchClassStudentsStart = (classId) => ({
 
 export const fetchClassesFailure = (error) => ({
   type: StudentsClassActionsType.FETCH_CLASSES_FAILURE,
-  payload: error.message || '',
+  payload: error,
 });

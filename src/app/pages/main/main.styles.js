@@ -1,18 +1,14 @@
 import styled, { css } from 'styled-components';
 
 const closedMenuStyle = css`
-  width: 0;
+  left: -400px;
 }`;
 
 const openMenuStyle = css`
-  width: 100%;
-
-  @media screen and (min-width: 400px) {
-    width: 400px;
-  }
+  left: 0;
 `;
 
-const getMenuSize = (props) => {
+const getMenuPosition = (props) => {
   if (props.toggled) {
     return openMenuStyle;
   }
@@ -39,14 +35,18 @@ export const ContentStyled = styled.div`
 export const MenuContainerStyled = styled.div`
   background: #fff;
   position: absolute;
-  left: 0;
+  left: -400px;
   height: calc(100vh - 50px);
-  width: 0;
+  width: 100%;
   overflow: hidden;
   -webkit-transition:width .1s linear;
-  transition:width .1s linear;
+  transition:left .1s linear;
   -webkit-transform:translateZ(0) scale(1,1);
   z-index:1000;
 
-  ${getMenuSize}
+  @media screen and (min-width: 400px) {
+    width: 400px;
+  }
+
+  ${getMenuPosition}
 `;

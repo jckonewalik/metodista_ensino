@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { handleErrorMessage } from '../../utils/utils';
 import api from '../../../services/api';
 import {
   setAttendanceTeacher,
@@ -70,10 +71,10 @@ const AttendanceComplementPage = ({ history }) => {
       setMessage({ title: '', message: 'Chamada realizada com sucesso', isError: false });
       setOpen(true);
     } catch (error) {
-      const { data } = await error.response;
+      const errorMessage = await handleErrorMessage(error);
       setMessage({
         title: 'Erro ao realizar chamada',
-        message: (data && data.message) || 'Request Error',
+        message: errorMessage,
         isError: true,
       });
       setOpen(true);
