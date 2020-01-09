@@ -29,14 +29,14 @@ export const ContentStyled = styled.div`
   flex: 1;
   background: #EAEAEA;
   padding: 0 10px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
 `;
 
 export const MenuContainerStyled = styled.div`
   background: #fff;
   position: absolute;
   left: -400px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
   width: 100%;
   overflow: hidden;
   -webkit-transition:width .1s linear;

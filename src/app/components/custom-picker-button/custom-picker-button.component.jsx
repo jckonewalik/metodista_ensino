@@ -15,8 +15,8 @@ import {
   ContentContainerStyled,
   LabelStyled,
   ValueStyled,
+  CustomButtonStyled,
 } from './custom-picker-button.styles';
-import CustomButton from '../custom-button/custom-button.component';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -85,12 +85,12 @@ const CustomPickerButton = ({
           </form>
         </DialogContent>
         <DialogActions>
-          <CustomButton onClick={handleClose}>
+          <CustomButtonStyled onClick={handleClose}>
             Cancel
-          </CustomButton>
-          <CustomButton onClick={handleClose}>
+          </CustomButtonStyled>
+          <CustomButtonStyled onClick={handleClose}>
             Ok
-          </CustomButton>
+          </CustomButtonStyled>
         </DialogActions>
       </Dialog>
     </>
