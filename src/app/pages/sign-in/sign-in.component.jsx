@@ -32,8 +32,12 @@ const SignInPage = () => {
       await api.put('/users/reset-password', { email: userCredentials.email });
       setCurrentAlert({ open: true, title: 'Reset e senha', message: `Um E-mail foi enviado para o endereço ${userCredentials.email}` });
     } catch (error) {
-      const { message } = await error.response.data;
-      setCurrentAlert({ open: true, title: 'Erro ao efetuar reset e senha', message });
+      const { data: { message } } = await error.response;
+      setCurrentAlert({
+        open: true,
+        title: 'Erro ao efetuar reset e senha',
+        message: message || 'Request Error',
+      });
     }
   };
   const handleSubmit = async (event) => {
@@ -45,8 +49,12 @@ const SignInPage = () => {
       setCurrentAlert({ open: false, title: '', message: '' });
       dispatch(setCurrentUser(user));
     } catch (error) {
-      const { message } = error.response.data;
-      setCurrentAlert({ open: true, title: 'Erro ao efetuar Login', message });
+      const { data: { message } } = error.response;
+      setCurrentAlert({
+        open: true,
+        title: 'Erro ao efetuar Login',
+        message: message || 'Request Error',
+      });
     }
   };
   const handleChange = ({ target: { name, value } }) => {

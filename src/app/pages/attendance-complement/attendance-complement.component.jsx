@@ -70,10 +70,10 @@ const AttendanceComplementPage = ({ history }) => {
       setMessage({ title: '', message: 'Chamada realizada com sucesso', isError: false });
       setOpen(true);
     } catch (error) {
-      const errorResponse = await error.response.data;
+      const { data } = await error.response;
       setMessage({
         title: 'Erro ao realizar chamada',
-        message: errorResponse.message,
+        message: (data && data.message) || 'Request Error',
         isError: true,
       });
       setOpen(true);
