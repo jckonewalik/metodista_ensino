@@ -5,11 +5,13 @@ import {
   FormInputLabelStyled,
 } from './form-input.styles';
 
-const FormInput = ({ label, handleChange, ...otherProps }) => (
+const FormInput = ({
+  label, handleChange, ...otherProps
+}) => (
   <GroupContainer>
     <FormInputStyled onChange={handleChange} {...otherProps} />
     {label ? (
-      <FormInputLabelStyled className={`${otherProps.value.length ? 'shrink' : ''}`}>
+      <FormInputLabelStyled className={`${otherProps.value.length || otherProps.value === 0 ? 'shrink' : ''}`}>
         {label}
       </FormInputLabelStyled>
     ) : null}

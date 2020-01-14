@@ -9,13 +9,13 @@ import {
   Input,
   MenuItem,
   InputLabel,
+  Button,
 } from '@material-ui/core';
 import {
   ContainerStyled,
   ContentContainerStyled,
   LabelStyled,
   ValueStyled,
-  CustomButtonStyled,
 } from './custom-picker-button.styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -85,12 +85,12 @@ const CustomPickerButton = ({
           </form>
         </DialogContent>
         <DialogActions>
-          <CustomButtonStyled onClick={handleClose}>
-            Cancel
-          </CustomButtonStyled>
-          <CustomButtonStyled onClick={handleClose}>
+          <Button color="primary" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button color="primary" onClick={handleClose}>
             Ok
-          </CustomButtonStyled>
+          </Button>
         </DialogActions>
       </Dialog>
     </>

@@ -4,6 +4,7 @@ import { Icon } from '@material-ui/core';
 export const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background:  #F22333;
   color: #fff;
   height: 80px;

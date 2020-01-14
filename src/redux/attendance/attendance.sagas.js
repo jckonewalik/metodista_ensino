@@ -10,7 +10,6 @@ import {
 import StudentsClassActionsType from '../students-class/students-class.types';
 import { selectCurrentClass } from '../students-class/students-class.selectors';
 import AttendanceTypes from './attendance.types';
-import { currentUserTokenSelector } from '../user/user.selectors';
 
 function* createAttendanceItems() {
   const currentClass = yield select(selectCurrentClass);
@@ -22,9 +21,7 @@ function* createAttendanceItems() {
 function* fetchLessonsList() {
   try {
     const studentsClass = yield select(selectCurrentClass);
-    const token = yield select(currentUserTokenSelector);
-    const response = yield api.get(`courses/${studentsClass.CourseId}/lessons`,
-      { headers: { Authorization: `Bearer ${token}` } });
+    const response = yield api.get(`courses/${studentsClass.CourseId}/lessons`);
     const { lessons } = yield response.data;
     yield put(fetchLessonsListSuccess(lessons));
   } catch (error) {

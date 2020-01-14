@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import CustomButton from '../custom-button/custom-button.component';
 
 export const ContainerStyled = styled.div`
   margin: 10px 0;
@@ -26,8 +25,4 @@ export const LabelStyled = styled.span`
 export const ValueStyled = styled.span`
   font-size: 16px;
   color: #fff;
-`;
-
-export const CustomButtonStyled = styled(CustomButton)`
-  height: 30px;
 `;

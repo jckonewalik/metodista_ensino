@@ -22,7 +22,6 @@ import {
   selectCurrentAttendance,
 } from '../../../redux/attendance/attendance.selectors';
 import { selectCurrentClass, selectIsFechingCurrentClass, selectTeachersCurrentClass } from '../../../redux/students-class/students-class.selectors';
-import { currentUserTokenSelector } from '../../../redux/user/user.selectors';
 import { CustomInfoDialog } from '../../components/custom-dialog/custom-dialog.component';
 import CustomPickerButton from '../../components/custom-picker-button/custom-picker-button.component';
 
@@ -35,8 +34,7 @@ const AttendanceComplementPage = ({ history }) => {
   const attendance = useSelector(selectCurrentAttendance);
   const studentsClass = useSelector(selectCurrentClass);
   const isFetchingCurrentClass = useSelector(selectIsFechingCurrentClass);
-  const token = useSelector(currentUserTokenSelector);
-
+  
   const [message, setMessage] = useState({ title: '', message: '', isError: false });
   const [open, setOpen] = useState(false);
 
@@ -65,8 +63,7 @@ const AttendanceComplementPage = ({ history }) => {
           (appointment) => ({ StudentId: appointment.student.id, status: appointment.status }),
         ),
       };
-      await api.post('/attendances',
-        body, { headers: { Authorization: `Bearer ${token}` } });
+      await api.post('/attendances', body);
       await dispatch(saveAttendanceSuccess());
       setMessage({ title: '', message: 'Chamada realizada com sucesso', isError: false });
       setOpen(true);
