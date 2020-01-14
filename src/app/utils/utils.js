@@ -12,13 +12,13 @@ export const handleErrorMessage = async (error) => {
   return message;
 };
 
-export const sortArray = ({ array, attr, order = 'asc' }) => {
+export const sortArrayByNumber = ({ array, attr, order = 'asc' }) => {
   if (order === 'asc') {
     return array.sort((a, b) => {
-      if (a[attr].toLowerCase() < b[attr].toLowerCase()) {
+      if (a[attr] < b[attr]) {
         return -1;
       }
-      if (a[attr].toLowerCase() > b[attr].toLowerCase()) {
+      if (a[attr] > b[attr]) {
         return 1;
       }
       return 0;
@@ -26,10 +26,36 @@ export const sortArray = ({ array, attr, order = 'asc' }) => {
   }
   if (order === 'desc') {
     return array.sort((a, b) => {
-      if (a[attr].toLowerCase() > b[attr].toLowerCase()) {
+      if (a[attr] > b[attr]) {
         return -1;
       }
-      if (a[attr].toLowerCase() < b[attr].toLowerCase()) {
+      if (a[attr] < b[attr]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  return array;
+};
+
+export const sortArrayByString = ({ array, attr, order = 'asc' }) => {
+  if (order === 'asc') {
+    return array.sort((a, b) => {
+      if (String(a[attr]).toLowerCase() < String(b[attr]).toLowerCase()) {
+        return -1;
+      }
+      if (String(a[attr]).toLowerCase() > String(b[attr]).toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (order === 'desc') {
+    return array.sort((a, b) => {
+      if (String(a[attr]).toLowerCase() > String(b[attr]).toLowerCase()) {
+        return -1;
+      }
+      if (String(a[attr]).toLowerCase() < String(b[attr]).toLowerCase()) {
         return 1;
       }
       return 0;

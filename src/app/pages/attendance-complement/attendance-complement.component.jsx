@@ -21,7 +21,10 @@ import {
   selectAttendanceLessons,
   selectCurrentAttendance,
 } from '../../../redux/attendance/attendance.selectors';
-import { selectCurrentClass, selectIsFechingCurrentClass, selectTeachersCurrentClass } from '../../../redux/students-class/students-class.selectors';
+import { selectCurrentClass, 
+  selectIsFechingCurrentClass, 
+  selectTeachersCurrentClass 
+} from '../../../redux/students-class/students-class.selectors';
 import { CustomInfoDialog } from '../../components/custom-dialog/custom-dialog.component';
 import CustomPickerButton from '../../components/custom-picker-button/custom-picker-button.component';
 
@@ -92,7 +95,7 @@ const AttendanceComplementPage = ({ history }) => {
                 handleChange={handleTeacherChange}
                 options={teachers.map((teacher) => ({ id: teacher.id, name: `${teacher.firstName}` }))}
               />
-              { lessons.lenght > 0
+              { lessons.length > 0
                 ? (
                   <CustomPickerButton
                     label="Lição"
