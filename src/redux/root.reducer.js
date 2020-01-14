@@ -6,9 +6,11 @@ import menuReducer from './menu/menu.reducer';
 import headerReducer from './header/header.reducer';
 import attendanceReducer from './attendance/attendance.reducer';
 import studentsClassReducer from './students-class/students-class.reducer';
+import courseReducer from './course/course.reducer';
 
 const rootReducer = combineReducers(
   {
+    course: courseReducer,
     user: userReducer,
     header: headerReducer,
     menu: menuReducer,

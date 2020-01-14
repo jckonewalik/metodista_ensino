@@ -16,7 +16,7 @@ export const ButtonStyled = styled.button`
   width: 100%;
   border-radius: 30px;
   border: none;
-  min-height: 30px;
+  height: 50px;
 `;
 
 export const LabelStyled = styled.span`

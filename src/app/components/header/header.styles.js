@@ -4,9 +4,10 @@ import { Icon } from '@material-ui/core';
 export const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background:  #F22333;
   color: #fff;
-  height: 50px;
+  height: 80px;
 `;
 
 export const IconWhite = styled(Icon)`
@@ -22,8 +23,9 @@ export const TitleContainer = styled.div`
 `;
 
 export const TitleStyled = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  margin-bottom: 5px;
 `;
 
 export const SubtitleStyled = styled.span`
