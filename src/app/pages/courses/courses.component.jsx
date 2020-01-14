@@ -23,7 +23,7 @@ import {
   FooterContent, BodyContainer, TitleStyled, FormStyled,
 } from './courses.styles';
 import * as service from '../../../services/courses/courses.services';
-import { sortArray } from '../../utils/utils';
+import { sortArrayByString } from '../../utils/utils';
 
 const CoursesPage = () => {
   const INITIAL_DATA = {
@@ -44,7 +44,7 @@ const CoursesPage = () => {
   const loadCourses = async () => {
     try {
       let myCourses = await service.getCourses();
-      myCourses = sortArray({ array: myCourses, attr: 'name', order: 'asc' });
+      myCourses = sortArrayByString({ array: myCourses, attr: 'name', order: 'asc' });
       setCourseList(myCourses);
     } catch {
       setCourseList([]);
