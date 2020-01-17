@@ -27,6 +27,7 @@ export const AttendanceListContainerStyled = styled.div`
   overflow: hidden;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  border: 1px solid #EAEAEA;
 
   @media screen and (min-width: 900px) {
     width: 800px;

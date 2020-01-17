@@ -15,9 +15,10 @@ export const ContainerStyled = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 20px 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  background: #FFF;
+  background: #fff;
+  cursor: pointer;
 `;
 
 export const ClassContainerStyled = styled.div`

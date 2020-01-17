@@ -29,7 +29,7 @@ export const ContentStyled = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: #EAEAEA;
+  background: #fff;
   padding: 0 10px;
   height: calc(100vh - 80px);
 `;
@@ -45,6 +45,7 @@ export const MenuContainerStyled = styled.div`
   transition:left .1s linear;
   -webkit-transform:translateZ(0) scale(1,1);
   z-index:1000;
+  border-right: solid 1px #EAEAEA;
 
   @media screen and (min-width: 400px) {
     width: 400px;
