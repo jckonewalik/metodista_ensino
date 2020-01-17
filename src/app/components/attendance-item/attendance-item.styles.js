@@ -6,8 +6,7 @@ export const ContainerStyled = styled.div`
   justify-content: space-between;
   padding-left: 20px;
   min-height: 60px;
-  border-bottom-color: #EAEAEA;
-  border-bottom-width: 1;
+  border-bottom: 1px solid #EAEAEA;
 `;
 
 export const NamedStyled = styled.span`

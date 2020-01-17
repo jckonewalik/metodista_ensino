@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { toggleMenu } from '../../../redux/menu/menu.actions';
 import MenuItem from '../menu-item/menu-item.component';
@@ -9,10 +9,11 @@ import teachers from '../../../assets/teachers.png';
 import books from '../../../assets/books.png';
 import student from '../../../assets/student.png';
 import desk from '../../../assets/desk.png';
-
+import { isAdminUserSelector } from '../../../redux/user/user.selectors';
 
 const Menu = ({ history }) => {
   const dispatch = useDispatch();
+  const isAdminUser = useSelector(isAdminUserSelector);
   const closeMenu = () => {
     dispatch(toggleMenu());
   };
@@ -28,7 +29,8 @@ const Menu = ({ history }) => {
     closeMenu();
   };
   const handleStudentsClick = () => {
-
+    history.push('/students');
+    closeMenu();
   };
   const handleStudentsClassClick = () => {
 
@@ -43,11 +45,16 @@ const Menu = ({ history }) => {
               icon={student}
               text="Alunos"
             />
-            <MenuItem
-              handleClick={handleCoursesClick}
-              icon={books}
-              text="Cursos"
-            />
+            {
+              isAdminUser
+                ? (
+                  <MenuItem
+                    handleClick={handleCoursesClick}
+                    icon={books}
+                    text="Cursos"
+                  />
+                ) : null
+            }
             <MenuItem
               handleClick={handleAttendanceClick}
               icon={attendance}
