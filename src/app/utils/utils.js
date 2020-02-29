@@ -38,6 +38,14 @@ export const sortArrayByNumber = ({ array, attr, order = 'asc' }) => {
   return array;
 };
 
+export const concatString = ({ string, maxSize, appendCaracters = '...' }) => {
+  const returnString = string.length > maxSize
+    ? string.substring(0, maxSize - 1) + appendCaracters
+    : string;
+
+  return returnString;
+};
+
 export const sortArrayByString = ({ array, attr, order = 'asc' }) => {
   if (order === 'asc') {
     return array.sort((a, b) => {

@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { sortArrayByString } from '../../app/utils/utils';
 
 const selectStudentClass = (state) => state.studentsClass;
 
@@ -9,7 +10,7 @@ export const selectCurrentClass = createSelector(
 
 export const selectTeachersCurrentClass = createSelector(
   [selectCurrentClass],
-  (currentClass) => (currentClass && currentClass.teachers) || [],
+  (currentClass) => (currentClass && sortArrayByString({ array: currentClass.teachers, attr: 'name' })) || [],
 );
 
 export const selectIsFechingClasses = createSelector(

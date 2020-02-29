@@ -17,6 +17,7 @@ import {
   LabelStyled,
   ValueStyled,
 } from './custom-picker-button.styles';
+import { concatString } from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -47,7 +48,14 @@ const CustomPickerButton = ({
             value ? (
               <>
                 <LabelStyled>{label}</LabelStyled>
-                <ValueStyled>{value && value.name}</ValueStyled>
+                <ValueStyled>
+                  {value && concatString(
+                    {
+                      string: value.name,
+                      maxSize: 20,
+                    },
+                  )}
+                </ValueStyled>
               </>
             )
               : <LabelStyled>{`SELECIONAR ${label}`}</LabelStyled>
@@ -76,7 +84,15 @@ const CustomPickerButton = ({
                 {
                   options.map((opt) => (
                     <MenuItem key={opt.id} value={opt}>
-                      {opt.name}
+                      {
+                      concatString(
+                        {
+                          string: opt.name,
+                          maxSize: 30,
+                        },
+                      )
+}
+
                     </MenuItem>
                   ))
                 }

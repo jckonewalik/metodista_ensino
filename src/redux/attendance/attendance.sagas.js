@@ -10,6 +10,7 @@ import {
 import StudentsClassActionsType from '../students-class/students-class.types';
 import { selectCurrentClass } from '../students-class/students-class.selectors';
 import AttendanceTypes from './attendance.types';
+import { sortArrayByNumber } from '../../app/utils/utils';
 
 function* createAttendanceItems() {
   const currentClass = yield select(selectCurrentClass);
@@ -22,7 +23,8 @@ function* fetchLessonsList() {
   try {
     const studentsClass = yield select(selectCurrentClass);
     const response = yield api.get(`courses/${studentsClass.CourseId}/lessons`);
-    const { lessons } = yield response.data;
+    let { lessons } = yield response.data;
+    lessons = sortArrayByNumber({ array: lessons, attr: 'number' });
     yield put(fetchLessonsListSuccess(lessons));
   } catch (error) {
     yield put(fetchLessonsListFailure());
