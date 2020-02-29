@@ -10,7 +10,7 @@ export const selectCurrentClass = createSelector(
 
 export const selectTeachersCurrentClass = createSelector(
   [selectCurrentClass],
-  (currentClass) => (currentClass && sortArrayByString({ array: currentClass.teachers, attr: 'name' })) || [],
+  (currentClass) => (currentClass && sortArrayByString({ array: currentClass.teachers, attr: 'firstName' })) || [],
 );
 
 export const selectIsFechingClasses = createSelector(

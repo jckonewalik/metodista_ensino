@@ -40,19 +40,21 @@ const Menu = ({ history }) => {
       <nav>
         <StyledList>
           <li>
-            <MenuItem
-              handleClick={handleStudentsClick}
-              icon={student}
-              text="Alunos"
-            />
             {
               isAdminUser
                 ? (
-                  <MenuItem
-                    handleClick={handleCoursesClick}
-                    icon={books}
-                    text="Cursos"
-                  />
+                  <>
+                    <MenuItem
+                      handleClick={handleStudentsClick}
+                      icon={student}
+                      text="Alunos"
+                    />
+                    <MenuItem
+                      handleClick={handleCoursesClick}
+                      icon={books}
+                      text="Cursos"
+                    />
+                  </>
                 ) : null
             }
             <MenuItem
@@ -60,16 +62,24 @@ const Menu = ({ history }) => {
               icon={attendance}
               text="Lista de Presença"
             />
-            <MenuItem
-              handleClick={handleTeachersClick}
-              icon={teachers}
-              text="Professores"
-            />
-            <MenuItem
-              handleClick={handleStudentsClassClick}
-              icon={desk}
-              text="Turmas"
-            />
+            {
+              isAdminUser
+                ? (
+                  <>
+                    <MenuItem
+                      handleClick={handleTeachersClick}
+                      icon={teachers}
+                      text="Professores"
+                    />
+
+                    <MenuItem
+                      handleClick={handleStudentsClassClick}
+                      icon={desk}
+                      text="Turmas"
+                    />
+                  </>
+                ) : null
+}
           </li>
         </StyledList>
       </nav>

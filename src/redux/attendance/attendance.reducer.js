@@ -16,7 +16,9 @@ const attendanceReducer = (state = INITIAL_STATE, action) => {
     case AttendanceTypes.SET_ATTENDANCE_APPOINTMENTS:
       return {
         ...state,
-        currentAttendance: { ...state.currentAttendance, appointments: action.payload },
+        currentAttendance: {
+          ...state.currentAttendance, teacher: null, lesson: null, appointments: action.payload,
+        },
       };
     case AttendanceTypes.SET_APPOINTMENT:
       return {
