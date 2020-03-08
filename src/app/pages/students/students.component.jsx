@@ -36,6 +36,7 @@ const INITIAL_DATA = {
   lastName: '',
   birthDate: null,
   gender: 'male',
+  phoneNumber: '',
 };
 
 class StudentsPage extends Component {
@@ -99,7 +100,7 @@ class StudentsPage extends Component {
 
   handleAddStudent = () => {
     titleForm = 'Adicionar Aluno';
-    this.setState({ openForm: true });
+    this.setState({ currentStudent: INITIAL_DATA, openForm: true });
   };
 
   handleEditStudent = async (student) => {
@@ -144,10 +145,6 @@ class StudentsPage extends Component {
     }
     if (!currentStudent.lastName || currentStudent.lastName === '') {
       this.setState({ currentError: { hasError: true, message: 'Informe o sobrenome do aluno' } });
-      return;
-    }
-    if (!currentStudent.birthDate || currentStudent.birthDate === '') {
-      this.setState({ currentError: { hasError: true, message: 'Informe a data de nascimento do aluno' } });
       return;
     }
     if (currentStudent.birthDate > new Date()) {
@@ -307,6 +304,12 @@ class StudentsPage extends Component {
                 <FormControlLabel labelPlacement="end" value="female" control={<Radio />} label="Feminino" />
                 <FormControlLabel labelPlacement="end" value="male" control={<Radio />} label="Masculino" />
               </RadioGroup>
+              <FormInput
+                label="Telefone"
+                name="phoneNumber"
+                value={currentStudent.phoneNumber}
+                handleChange={this.handleInputChange}
+              />
             </FormStyled>
           </DialogContent>
         </Dialog>
