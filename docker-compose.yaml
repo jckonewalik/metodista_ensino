@@ -1,0 +1,33 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ../data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  api:
+    build:
+      context: ../metodista_ensino_backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ../metodista_ensino_backend:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
