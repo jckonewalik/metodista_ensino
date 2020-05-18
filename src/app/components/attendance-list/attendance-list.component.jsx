@@ -11,7 +11,7 @@ const AttendanceList = () => {
   return (
     <ContainerStyled>
       {
-        appointments.map((item) => <AttendanceItem key={item.student.id} appointment={item} />)
+        appointments.map((item) => <AttendanceItem key={item.Student.id} appointment={item} />)
       }
     </ContainerStyled>
   );

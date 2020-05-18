@@ -1,25 +1,38 @@
+/* eslint-disable no-case-declarations */
 import AttendanceTypes from './attendance.types';
 import { setAppointment } from './attendance.utils';
 
 const INITIAL_STATE = {
   currentAttendance: {
+    id: null,
+    StudentsClassId: null,
     date: new Date(),
+    Teacher: null,
+    Lesson: null,
     appointments: [],
-    teacher: null,
-    lesson: null,
   },
   lessons: [],
 };
 
 const attendanceReducer = (state = INITIAL_STATE, action) => {
+  const { payload } = action;
   switch (action.type) {
-    case AttendanceTypes.SET_ATTENDANCE_APPOINTMENTS:
-      return {
-        ...state,
-        currentAttendance: {
-          ...state.currentAttendance, teacher: null, lesson: null, appointments: action.payload,
-        },
-      };
+    case AttendanceTypes.START_ATTENDANCE:
+      if (payload) {
+        const { id, students } = payload;
+        const appointments = students.map((student) => ({ Student: student, status: null }));
+        return {
+          ...state,
+          currentAttendance: {
+            ...state.currentAttendance,
+            StudentsClassId: id,
+            Teacher: null,
+            Lesson: null,
+            appointments,
+          },
+        };
+      }
+      return state;
     case AttendanceTypes.SET_APPOINTMENT:
       return {
         ...state,
@@ -44,7 +57,7 @@ const attendanceReducer = (state = INITIAL_STATE, action) => {
         currentAttendance:
         {
           ...state.currentAttendance,
-          teacher: action.payload,
+          Teacher: action.payload,
         },
       };
     case AttendanceTypes.SET_ATTENDANCE_LESSON:
@@ -53,7 +66,7 @@ const attendanceReducer = (state = INITIAL_STATE, action) => {
         currentAttendance:
         {
           ...state.currentAttendance,
-          lesson: action.payload,
+          Lesson: action.payload,
         },
       };
     case AttendanceTypes.SAVE_ATTENDANCE_SUCCESS:

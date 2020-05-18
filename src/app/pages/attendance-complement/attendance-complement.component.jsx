@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleErrorMessage } from '../../utils/utils';
-import api from '../../../services/api';
+import { post } from '../../../services/attendances/attendances.services';
 import {
   setAttendanceTeacher,
   setAttendanceLesson,
@@ -21,9 +21,10 @@ import {
   selectAttendanceLessons,
   selectCurrentAttendance,
 } from '../../../redux/attendance/attendance.selectors';
-import { selectCurrentClass, 
-  selectIsFechingCurrentClass, 
-  selectTeachersCurrentClass 
+import {
+  selectCurrentClass,
+  selectIsFechingCurrentClass,
+  selectTeachersCurrentClass,
 } from '../../../redux/students-class/students-class.selectors';
 import { CustomInfoDialog } from '../../components/custom-dialog/custom-dialog.component';
 import CustomPickerButton from '../../components/custom-picker-button/custom-picker-button.component';
@@ -37,7 +38,7 @@ const AttendanceComplementPage = ({ history }) => {
   const attendance = useSelector(selectCurrentAttendance);
   const studentsClass = useSelector(selectCurrentClass);
   const isFetchingCurrentClass = useSelector(selectIsFechingCurrentClass);
-  
+
   const [message, setMessage] = useState({ title: '', message: '', isError: false });
   const [open, setOpen] = useState(false);
 
@@ -57,16 +58,7 @@ const AttendanceComplementPage = ({ history }) => {
   };
   const handleSaveButton = async () => {
     try {
-      const body = {
-        date: attendance.date,
-        StudentsClassId: studentsClass.id,
-        TeacherId: attendance.teacher && attendance.teacher.id,
-        LessonId: attendance.lesson && attendance.lesson.id,
-        appointments: attendance.appointments.map(
-          (appointment) => ({ StudentId: appointment.student.id, status: appointment.status }),
-        ),
-      };
-      await api.post('/attendances', body);
+      await post(attendance);
       await dispatch(saveAttendanceSuccess());
       setMessage({ title: '', message: 'Chamada realizada com sucesso', isError: false });
       setOpen(true);
@@ -95,7 +87,7 @@ const AttendanceComplementPage = ({ history }) => {
                 handleChange={handleTeacherChange}
                 options={teachers.map((teacher) => ({ id: teacher.id, name: `${teacher.firstName}` }))}
               />
-              { lessons.length > 0
+              {lessons.length > 0
                 ? (
                   <CustomPickerButton
                     label="Lição"

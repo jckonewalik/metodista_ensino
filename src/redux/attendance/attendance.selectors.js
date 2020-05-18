@@ -24,12 +24,12 @@ export const selectAttendanceDate = createSelector(
 
 export const selectAttendanceTeacher = createSelector(
   [selectCurrentAttendance],
-  (attendance) => attendance.teacher,
+  (attendance) => attendance.Teacher,
 );
 
 export const selectAttendanceLesson = createSelector(
   [selectCurrentAttendance],
-  (attendance) => attendance.lesson,
+  (attendance) => attendance.Lesson,
 );
 
 export const selectStudentsRemaining = createSelector(

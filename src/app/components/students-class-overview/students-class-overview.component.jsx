@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setCurrentClassStart } from '../../../redux/students-class/students-class.actions';
+import { setCurrentClass } from '../../../redux/students-class/students-class.actions';
 import {
   ContainerStyled,
   ClassContainerStyled,
@@ -14,7 +14,7 @@ const StudentsClassOverview = ({ classItem, match, history }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setCurrentClassStart(classItem));
+    dispatch(setCurrentClass(classItem));
     history.push(`${match.path}/attendance-list`);
   };
   return (

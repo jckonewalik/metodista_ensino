@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AttendanceOverview from '../../components/attendance-overview/attendance-overview.component';
 import AttendanceList from '../../components/attendance-list/attendance-list.component';
-import { setAttendanceDate } from '../../../redux/attendance/attendance.actions';
+import { startAttendance, setAttendanceDate } from '../../../redux/attendance/attendance.actions';
 import { selectAttendanceDate, selectAttendancesComplete } from '../../../redux/attendance/attendance.selectors';
 import { selectCurrentClass, selectIsFechingCurrentClass } from '../../../redux/students-class/students-class.selectors';
 import {
@@ -27,8 +27,13 @@ const AttendancePage = ({ match, history }) => {
     dispatch(setHeaderTitle({
       title: currentClass && currentClass.name,
       subtitle: currentClass && currentClass.description,
-    }), [dispatch]);
-  });
+    }));
+  }, [dispatch, currentClass]);
+
+  useEffect(() => {
+    dispatch(startAttendance(currentClass));
+  }, [dispatch, currentClass]);
+
 
   const selectDate = (newdate) => {
     dispatch(setAttendanceDate(newdate));
@@ -49,7 +54,7 @@ const AttendancePage = ({ match, history }) => {
                 history.push(`${match.path}/complement`);
               }}
             >
-            SALVAR
+              SALVAR
             </CustomButtonStyled>
           </ButtonContainerStyled>
         </MainContainer>

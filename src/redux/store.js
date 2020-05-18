@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-// import { logger } from 'redux-logger';
+import { logger } from 'redux-logger';
+import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './root.saga';
@@ -7,7 +8,7 @@ import persistedReducer from './root.reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares = [logger, thunk, sagaMiddleware];
 
 export const store = createStore(persistedReducer, applyMiddleware(...middlewares));
 

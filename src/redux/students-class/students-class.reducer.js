@@ -1,7 +1,6 @@
 import StudentsClassActionsType from './students-class.types';
 
 const INITIAL_STATE = {
-  currentClass: null,
   myClasses: [],
   errorMessage: '',
   isFechingCurrentClass: false,

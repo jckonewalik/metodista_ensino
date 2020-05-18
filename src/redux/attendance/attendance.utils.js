@@ -1,12 +1,12 @@
 export const setAppointment = (appointments, appointmentToSet) => {
   const appointmentExists = appointments.find(
-    (appointment) => appointment.student.id === appointmentToSet.student.id,
+    (appointment) => appointment.Student.id === appointmentToSet.Student.id,
   );
 
   if (appointmentExists) {
     return appointments.map(
       (appointment) => {
-        if (appointment.student.id === appointmentToSet.student.id) {
+        if (appointment.Student.id === appointmentToSet.Student.id) {
           return {
             ...appointmentToSet,
           };

@@ -14,11 +14,11 @@ const AttendanceItem = ({ appointment }) => {
   const handleCheck = async (status) => {
     await dispatch(setAppointment({ ...appointment, status }));
   };
-  const name = `${appointment.student.firstName} ${appointment.student.lastName}`;
+  const name = `${appointment.Student.firstName} ${appointment.Student.lastName}`;
   return (
     <ContainerStyled>
       <NamedStyled>
-        { name.length > 25
+        {name.length > 25
           ? name.substring(0, 25).concat('...')
           : name}
       </NamedStyled>

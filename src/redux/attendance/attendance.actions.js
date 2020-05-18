@@ -1,8 +1,8 @@
 import AttendanceTypes from './attendance.types';
 
-export const setAttendanceAppointments = (appointments) => ({
-  type: AttendanceTypes.SET_ATTENDANCE_APPOINTMENTS,
-  payload: appointments,
+export const startAttendance = (studentsClass) => ({
+  type: AttendanceTypes.START_ATTENDANCE,
+  payload: studentsClass,
 });
 
 export const setAppointment = (appointment) => ({

@@ -10,12 +10,12 @@ import WithSpinner from '../with-spinner/with-spinner.component';
 
 
 const StudentsClassList = () => {
-  const classSelector = useSelector(selectMyClasses);
+  const classes = useSelector(selectMyClasses);
 
   return (
     <ContainerStyled>
       {
-        classSelector.map(
+        classes.map(
           (studentsClass) => (
             <StudentsClassOverview
               classItem={studentsClass}
