@@ -1,6 +1,6 @@
 import StudentsClassActionsType from './students-class.types';
 import { handleErrorMessage } from '../../app/utils/utils';
-import { list, get } from '../../services/student-class/student-class.services';
+import { list, get } from '../../services/student-class.services';
 
 export const setCurrentClass = (selectedClass) => async (dispatch) => {
   dispatch({

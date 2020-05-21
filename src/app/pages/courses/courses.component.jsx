@@ -22,7 +22,7 @@ import LessonForm from '../../components/lesson-form/lesson-form.component';
 import {
   FooterContent, BodyContainer, TitleStyled, FormStyled,
 } from './courses.styles';
-import * as service from '../../../services/courses/courses.services';
+import * as service from '../../../services/courses.services';
 import { sortArrayByString } from '../../utils/utils';
 
 const CoursesPage = () => {
@@ -43,7 +43,7 @@ const CoursesPage = () => {
 
   const loadCourses = async () => {
     try {
-      let myCourses = await service.getCourses();
+      let myCourses = await service.list();
       myCourses = sortArrayByString({ array: myCourses, attr: 'name', order: 'asc' });
       setCourseList(myCourses);
     } catch {
@@ -75,7 +75,7 @@ const CoursesPage = () => {
   };
   const handleEditCourse = async ({ id }) => {
     try {
-      const response = await service.getCourse({ id });
+      const response = await service.get({ id });
       dispatch(setCurrentCourse(response));
       setTitleForm('Editar Curso');
       setOpenForm(true);
@@ -91,7 +91,7 @@ const CoursesPage = () => {
   const deleteCourse = async () => {
     setOpenConfirmation(false);
     try {
-      await service.deleteCourse({ course: currentCourse });
+      await service.remove({ course: currentCourse });
       loadCourses();
     } catch (err) {
       const { data } = await err.response;
@@ -107,7 +107,7 @@ const CoursesPage = () => {
       return;
     }
     try {
-      await service.saveCourse({ course: currentCourse });
+      await service.save({ course: currentCourse });
       loadCourses();
       setOpenForm(false);
     } catch (err) {

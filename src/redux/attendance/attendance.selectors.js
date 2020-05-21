@@ -7,11 +7,6 @@ export const selectCurrentAttendance = createSelector(
   (attendance) => attendance.currentAttendance,
 );
 
-export const selectAttendanceLessons = createSelector(
-  [selectAttendance],
-  (attendance) => attendance.lessons,
-);
-
 export const selectAttendanceAppointments = createSelector(
   [selectCurrentAttendance],
   (attendance) => attendance.appointments,

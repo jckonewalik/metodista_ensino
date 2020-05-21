@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleErrorMessage } from '../../utils/utils';
-import { post } from '../../../services/attendances/attendances.services';
+import * as service from '../../../services/attendances.services';
 import {
   setAttendanceTeacher,
   setAttendanceLesson,
   saveAttendanceSuccess,
-  fetchLessonsListStart,
 } from '../../../redux/attendance/attendance.actions';
 import {
   RootContainerStyled,
@@ -18,12 +17,12 @@ import {
 import {
   selectAttendanceTeacher,
   selectAttendanceLesson,
-  selectAttendanceLessons,
   selectCurrentAttendance,
 } from '../../../redux/attendance/attendance.selectors';
 import {
   selectCurrentClass,
   selectIsFechingCurrentClass,
+  selectCourseLessonsCurrentClass,
   selectTeachersCurrentClass,
 } from '../../../redux/students-class/students-class.selectors';
 import { CustomInfoDialog } from '../../components/custom-dialog/custom-dialog.component';
@@ -32,7 +31,7 @@ import CustomPickerButton from '../../components/custom-picker-button/custom-pic
 const AttendanceComplementPage = ({ history }) => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeachersCurrentClass);
-  const lessons = useSelector(selectAttendanceLessons);
+  const lessons = useSelector(selectCourseLessonsCurrentClass);
   const attendanceTeacher = useSelector(selectAttendanceTeacher);
   const attendanceLesson = useSelector(selectAttendanceLesson);
   const attendance = useSelector(selectCurrentAttendance);
@@ -58,7 +57,7 @@ const AttendanceComplementPage = ({ history }) => {
   };
   const handleSaveButton = async () => {
     try {
-      await post(attendance);
+      await service.save(attendance);
       await dispatch(saveAttendanceSuccess());
       setMessage({ title: '', message: 'Chamada realizada com sucesso', isError: false });
       setOpen(true);
@@ -72,8 +71,6 @@ const AttendanceComplementPage = ({ history }) => {
       setOpen(true);
     }
   };
-
-  useEffect(() => { dispatch(fetchLessonsListStart()); }, [dispatch]);
 
   return (
     !studentsClass && !isFetchingCurrentClass ? <Redirect to="/attendance/my-classes" />

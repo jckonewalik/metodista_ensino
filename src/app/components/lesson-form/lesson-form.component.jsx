@@ -13,7 +13,7 @@ import { setCourseLessons } from '../../../redux/course/course.actions';
 import { MainContainer, TableContainerStyled } from './lesson-form.styles';
 import ConfirmDialog from '../confirm-dialog/confirm-dialog.component';
 import Alert from '../alert/alert.component';
-import * as service from '../../../services/lessons/lessons.services';
+import * as service from '../../../services/lessons.services';
 
 const LessonForm = () => {
   const INITIAL_STATE = {
@@ -61,7 +61,7 @@ const LessonForm = () => {
     setOpenConfirmation(false);
     try {
       if (lesson.id) {
-        await service.deleteLesson({ lesson });
+        await service.remove({ lesson });
       }
       const newLessons = lessons.filter((l) => l.number !== lesson.number);
       dispatch(setCourseLessons(newLessons));
@@ -94,7 +94,7 @@ const LessonForm = () => {
           style={{ width: '120px', height: '30px' }}
           onClick={() => { handleAddLesson(lesson); }}
         >
-  Adicionar
+          Adicionar
         </CustomButton>
       </div>
       <TableContainerStyled>

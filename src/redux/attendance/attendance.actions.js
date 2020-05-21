@@ -5,6 +5,11 @@ export const startAttendance = (studentsClass) => ({
   payload: studentsClass,
 });
 
+export const loadAttendance = (attendance) => ({
+  type: AttendanceTypes.LOAD_ATTENDANCE,
+  payload: attendance,
+});
+
 export const setAppointment = (appointment) => ({
   type: AttendanceTypes.SET_APPOINTMENT,
   payload: appointment,
@@ -27,17 +32,4 @@ export const setAttendanceLesson = (lesson) => ({
 
 export const saveAttendanceSuccess = () => ({
   type: AttendanceTypes.SAVE_ATTENDANCE_SUCCESS,
-});
-
-export const fetchLessonsListStart = () => ({
-  type: AttendanceTypes.FETCH_LESSONS_LIST_START,
-});
-
-export const fetchLessonsListSuccess = (lessons) => ({
-  type: AttendanceTypes.FETCH_LESSONS_LIST_SUCCESS,
-  payload: lessons,
-});
-
-export const fetchLessonsListFailure = () => ({
-  type: AttendanceTypes.FETCH_LESSONS_LIST_FAILURE,
 });

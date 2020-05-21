@@ -1,18 +1,18 @@
-import api from '../api';
+import api from './api';
 
-export const getCourses = async () => {
+export const list = async () => {
   const response = await api.get('/courses');
   const { courses } = await response.data;
   return courses;
 };
 
-export const getCourse = async ({ id }) => {
+export const get = async ({ id }) => {
   const response = await api.get(`/courses/${id}`);
   const { course } = await response.data;
   return course;
 };
 
-export const saveCourse = async ({ course }) => {
+export const save = async ({ course }) => {
   let response;
   if (course.id) {
     response = await api.put(`/courses/${course.id}`, course);
@@ -23,7 +23,7 @@ export const saveCourse = async ({ course }) => {
   return responseData;
 };
 
-export const deleteCourse = async ({ course }) => {
+export const remove = async ({ course }) => {
   const response = await api.delete(`/courses/${course.id}`);
   const responseData = await response.data;
   return responseData;

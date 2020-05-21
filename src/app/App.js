@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currentUserSelector } from '../redux/user/user.selectors';
 import SignInPage from './pages/sign-in/sign-in.component';
 import MainPage from './pages/main/main.components';
-import { checkUserSessionStart } from '../redux/user/user.actions';
+import { checkUserSession } from '../redux/user/user.actions';
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkUserSessionStart());
+    dispatch(checkUserSession());
   }, [dispatch]);
   const currentUser = useSelector(currentUserSelector);
   return !currentUser

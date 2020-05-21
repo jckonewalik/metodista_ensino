@@ -1,11 +1,22 @@
 import { createSelector } from 'reselect';
-import { sortArrayByString } from '../../app/utils/utils';
+import { sortArrayByString, sortArrayByNumber } from '../../app/utils/utils';
 
 const selectStudentClass = (state) => state.studentsClass;
 
 export const selectCurrentClass = createSelector(
   [selectStudentClass],
   (studentsClass) => studentsClass.currentClass,
+);
+
+export const selectCourseCurrentClass = createSelector(
+  [selectCurrentClass],
+  (currentClass) => (currentClass && currentClass.Course),
+);
+
+
+export const selectCourseLessonsCurrentClass = createSelector(
+  [selectCourseCurrentClass],
+  (course) => (course && sortArrayByNumber({ array: course.lessons, attr: 'number' })) || [],
 );
 
 export const selectTeachersCurrentClass = createSelector(

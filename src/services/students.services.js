@@ -1,6 +1,6 @@
-import api from '../api';
+import api from './api';
 
-export const saveStudent = async ({ student }) => {
+export const save = async ({ student }) => {
   let response;
   if (student.id) {
     response = await api.put(`/students/${student.id}`, student);
@@ -11,14 +11,14 @@ export const saveStudent = async ({ student }) => {
   return responseData;
 };
 
-export const listStudents = async ({ name, page, pageSize }) => {
+export const list = async ({ name, page, pageSize }) => {
   const response = await api.get(`/students?name=${name}&page=${page}&pageSize=${pageSize}`);
   const responseData = await response.data;
 
   return responseData;
 };
 
-export const deleteStudent = async ({ student }) => {
+export const remove = async ({ student }) => {
   const response = await api.delete(`/students/${student.id}`);
   const responseData = await response.data;
 

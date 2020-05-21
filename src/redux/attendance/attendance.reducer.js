@@ -18,21 +18,23 @@ const attendanceReducer = (state = INITIAL_STATE, action) => {
   const { payload } = action;
   switch (action.type) {
     case AttendanceTypes.START_ATTENDANCE:
-      if (payload) {
-        const { id, students } = payload;
-        const appointments = students.map((student) => ({ Student: student, status: null }));
-        return {
-          ...state,
-          currentAttendance: {
-            ...state.currentAttendance,
-            StudentsClassId: id,
-            Teacher: null,
-            Lesson: null,
-            appointments,
-          },
-        };
-      }
-      return state;
+      const { id, students } = payload;
+      const appointments = students.map((student) => ({ Student: student, status: null }));
+      return {
+        ...state,
+        currentAttendance: {
+          ...state.currentAttendance,
+          StudentsClassId: id,
+          Teacher: null,
+          Lesson: null,
+          appointments,
+        },
+      };
+    case AttendanceTypes.LOAD_ATTENDANCE:
+      return {
+        ...state,
+        currentAttendance: action.payload,
+      };
     case AttendanceTypes.SET_APPOINTMENT:
       return {
         ...state,

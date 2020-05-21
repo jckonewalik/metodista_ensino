@@ -11,10 +11,9 @@ export const MainContainer = styled.div`
 
 export const ButtonContainerStyled = styled.div`
   display: flex;
-  flex: 1;
-  margin: 15px 0 ;
+  height: 60px;
+  align-items: center;
   justify-content: flex-end;
-  align-items: flex-end;
 `;
 
 export const CustomButtonStyled = styled(CustomButton)`
